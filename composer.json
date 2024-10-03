@@ -1,0 +1,15 @@
+{
+    "name": "kmfoysal06/additional-fees-wc",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kazi Mohammad Foysal",
+            "email": "foysalkazimd01@gmail.com"
+        }
+    ],
+    "require": {}
+}
