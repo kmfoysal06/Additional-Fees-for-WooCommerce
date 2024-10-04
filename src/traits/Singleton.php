@@ -2,6 +2,7 @@
 /**
  * Trait Singleton Template
  * @package Additional Fees for WooCommerce
+ * 
  */
 
  namespace src\traits;

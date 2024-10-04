@@ -2,6 +2,7 @@
 /**
  * Add Tabs for Adding General Tax Tab for Everyone
  * @package Additional Fees for WooCommerce
+ * 
  */
 namespace src\classes;
 use src\traits\Singleton;
@@ -14,16 +15,28 @@ class AdditionalFeesWcTab{
 		add_action("woocommerce_update_options_vat_rate_tab", [$this, "update_settings_tab"]);
 	}
 
+	/**
+	 * Adding Tab for VAT Rate Settings Configuration in
+	 * WooCommerce Settings
+	 * 
+	 */
+
 	public function add_vat_rate_tab($tabs){
 		$tabs['vat_rate_tab'] = __("Extra Fee", 'additional-fees-wc');
 		return $tabs;
 	}
 
+	/**
+	 * Fields for General VAT Rate Configuration for
+	 * Everyone
+	 * 
+	 */
+
 	public function vat_rate_tab_fields(){
 		$settings = [
 			'section_title' => [
 				'id'       => 'vat_rate_tab_title',
-				'name'    => esc_html__("Configure Additional VAT rate for Everyone", 'woofees','additional-fees-wc'),
+				'name'    => esc_html__("Configure Additional VAT rate for Everyone",'additional-fees-wc'),
 				'desc'     => esc_html__("Configure Additional VAT or TAX for Your Products That Your Castomers Will See in The Checkout Page and They Have to Pay The Extra",'additional-fees-wc'),
 				'type'     => 'title'
 			],
@@ -48,9 +61,20 @@ class AdditionalFeesWcTab{
 		return apply_filters("vat_rate_tab_fields", $settings);
 	}
 
+	/**
+	 * Returning Fields in HTML for The WooCommerce
+	 * Settings Extra Fee Tab
+	 * 
+	 */
+
 	public function settings_tab(){
 		woocommerce_admin_fields($this->vat_rate_tab_fields());
 	}
+
+	/**
+	 * Updating The Data in The Database
+	 * 
+	 */
 
 	public function update_settings_tab(){
 		woocommerce_update_options($this->vat_rate_tab_fields());

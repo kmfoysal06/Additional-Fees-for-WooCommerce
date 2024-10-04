@@ -2,6 +2,7 @@
 /**
  * Fees Based on Payment Gateway
  * @package Additional Fees for WooCommerce
+ * 
  */
 namespace src\classes;
 use src\traits\Singleton;
@@ -12,6 +13,14 @@ class AdditionalFeesWcGateway{
 		add_action("woocommerce_settings_tabs_vat_rate_tab", [$this, "settings_tab"]);
 		add_action("woocommerce_update_options_vat_rate_tab", [$this, "update_settings_tab"]);
 	}
+	/**
+	 * Getting All Available Payment Gateways and
+	 * Forwarding Them in The load_fields Which Return 
+	 * The Fields For Each Payment Gateway.
+	 * @see load_fields
+	 * @return array
+	 * 
+	 */
 
 	public function vat_rate_tab_fields(){
 		$payment_methods = WC()->payment_gateways->get_available_payment_gateways();
@@ -26,20 +35,49 @@ class AdditionalFeesWcGateway{
 			
 	}
 
+	/**
+	 * Passing The Fields as Array in 
+	 * woocommerce_admin_fields That Will 
+	 * Return Them as HTML
+	 * @see vat_rate_tab_fields
+	 * 
+	 */
+
 	public function settings_tab(){
 		woocommerce_admin_fields($this->vat_rate_tab_fields());
 	}
+
+	/**
+	 * Passing The Fields as Array in 
+	 * woocommerce_update_options That Will 
+	 * Return Update The Data in The Database
+	 * @see vat_rate_tab_fields
+	 * 
+	 */
 
 	public function update_settings_tab(){
 		woocommerce_update_options($this->vat_rate_tab_fields());
 	}
 
+	/**
+	 * Default Structure of The Fields That Will Be 
+	 * Loaded as HTML in The WooCommerce Settings for 
+	 * Each Payment Methods
+	 * 
+	 */
+
 	public function load_fields($gateway_id, $gateway_title){
 		$settings = [
 			$gateway_id . '_section_title' => [
 				'id'       => esc_attr('additional_fees_for_wc_payment_gateway_'.$gateway_id),
-				'name'    => esc_html__("Configure Additional VAT rate for " . $gateway_title,'additional-fees-wc'),
-				'desc'     => esc_html__("Configure Additional VAT or TAX for Your Products That Your Castomers Will See in The Checkout Page and They Have to Pay The Extra if The Select " . $gateway_title, 'additional-fees-wc'),
+
+				/* translators: %s Payment Gateway Title */
+
+				'name' => sprintf(esc_html__("Configure Additional VAT rate for %s", 'additional-fees-wc'), esc_html($gateway_title)),
+
+				/* translators: %s: Payment Gateway Title */
+
+				'desc'     => sprintf(esc_html__("Configure Additional VAT or TAX for Your Products That Your Castomers Will See in The Checkout Page and They Have to Pay The Extra if The Select %s", 'additional-fees-wc'), esc_html($gateway_title)),
 				'type'     => 'title'
 			],
 			'dynamic_vat_rate_'.$gateway_id => [
