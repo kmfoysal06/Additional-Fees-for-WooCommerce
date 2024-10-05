@@ -4,8 +4,11 @@
  * @package Additional Fees for WooCommerce
  * 
  */
-namespace src\classes;
-use src\traits\Singleton;
+namespace affw\src\classes;
+
+if(!defined('ABSPATH')) exit;
+
+use affw\src\traits\Singleton;
 
 class AdditionalFeesWc{
 	use Singleton;
@@ -43,9 +46,9 @@ class AdditionalFeesWc{
 		if($total_vat > 0){
 			$fee_label = sprintf(
 		    /* translators: 1: Flate Fee, 2: Vat Percentage */
-		    __("Flat Fee + Vat ( %1\$s + %2\$s )", 'additional-fees-wc'),
+		    __("Flat Fee + Vat ( %1\$s + %2\$s%% )", 'additional-fees-for-woocommerce'),
 		    $flate_vat,
-		    $dynamic_vat . '%'
+		    $dynamic_vat
 		);
 
 			$woocommerce->cart->add_fee($fee_label, $total_vat);
@@ -92,10 +95,11 @@ class AdditionalFeesWc{
 
             if($total_vat > 0){
             	$fee_label = sprintf(
-			    /* translators: 1: Flate Fee, 2: Vat Percentage */
-			    __("Flat Fee + Vat ( %1\$s + %2\$s )", 'additional-fees-wc'),
+			    /* translators: 1: Flate Fee, 2: Vat Percentage, 3: Payment Gateway Title */
+			    __("Flat Fee + Vat ( %1\$s + %2\$s%% ) for %3\$s", 'additional-fees-for-woocommerce'),
 			    $flate_vat,
-			    $dynamic_vat . '%'
+			    $dynamic_vat,
+			    $payment_method_title
 			);
 
                 $woocommerce->cart->add_fee($fee_label, $total_vat);

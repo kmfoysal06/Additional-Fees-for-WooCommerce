@@ -5,7 +5,7 @@
  * 
  */
 
- namespace src\traits;
+ namespace affw\src\traits;
 
  if ( ! defined( 'ABSPATH' ) ) exit;
  
@@ -17,7 +17,7 @@
                 $called_class = get_called_class();
                 if(!isset($instance[$called_class])){
                     $instance[$called_class] = new $called_class;
-                    do_action(sprintf("additional_fees_for_wc_singleton_init%s",$called_class));
+                    do_action(sprintf("additional_fees_for_woocommerce_singleton_init%s",$called_class));
                 }
                 return $instance[$called_class];
 

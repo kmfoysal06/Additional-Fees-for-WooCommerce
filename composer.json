@@ -2,7 +2,7 @@
     "name": "kmfoysal06/additional-fees-wc",
     "autoload": {
         "psr-4": {
-            "src\\": "src/"
+            "affw\\src\\": "src/"
         }
     },
     "authors": [

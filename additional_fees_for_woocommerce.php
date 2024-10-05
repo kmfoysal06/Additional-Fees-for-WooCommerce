@@ -4,9 +4,9 @@
  * 
  * Plugin Name: Additional Fees for WooCommerce
  * Author: kmfoysal06
- * Version: 1.0
- * Stable tag: 1.0
- * text-domain: additional-fees-wc
+ * Version: 1.1
+ * Stable tag: 1.1
+ * text-domain: additional-fees-for-woocommerce
  * Description: Setting Up Additional Fee For WooCommerce
  * Author: kmfoysal06
  * Author URI: https://profiles.wordpress.org/kmfoysal06
@@ -18,17 +18,23 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+if(!defined('ABSPATH')) exit;
+
 require 'vendor/autoload.php';
-
-
-
 
 if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option("active_plugins")))) {
     return;
 }
 
-if(function_exists('additional_fees_wc_init')){
-	add_action("plugin_loaded", "additional_fees_wc_init");
+if(function_exists('additional_fees_for_woocommerce_init')){
+	add_action("plugin_loaded", "additional_fees_for_woocommerce_init");
+}
+
+if (!defined("AFFW_DIR_PATH")) {
+    define("AFFW_DIR_PATH", untrailingslashit(plugin_dir_path(__FILE__)));
+}
+if (!defined("AFFW_DIR_URI")) {
+    define("AFFW_DIR_URI", untrailingslashit(plugin_dir_url(__FILE__)));
 }
 
 /**
@@ -36,8 +42,8 @@ if(function_exists('additional_fees_wc_init')){
  * 
  */
 
-function additional_fees_wc_init(){
-	if(class_exists('src\\classes\\AdditionalFeesWc')){
-		return \src\classes\AdditionalFeesWc::get_instance();
+function additional_fees_for_woocommerce_init(){
+	if(class_exists('affw\\src\\classes\\AdditionalFeesWc')){
+		return \affw\src\classes\AdditionalFeesWc::get_instance();
 	}
 }

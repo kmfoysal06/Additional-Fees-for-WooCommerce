@@ -4,8 +4,11 @@
  * @package Additional Fees for WooCommerce
  * 
  */
-namespace src\classes;
-use src\traits\Singleton;
+namespace affw\src\classes;
+
+if(!defined('ABSPATH')) exit;
+
+use affw\src\traits\Singleton;
 
 class AdditionalFeesWcGateway{
 	use Singleton;
@@ -73,23 +76,23 @@ class AdditionalFeesWcGateway{
 
 				/* translators: %s Payment Gateway Title */
 
-				'name' => sprintf(esc_html__("Configure Additional VAT rate for %s", 'additional-fees-wc'), esc_html($gateway_title)),
+				'name' => sprintf(esc_html__("Configure Additional VAT rate for %s", 'additional-fees-for-woocommerce'), esc_html($gateway_title)),
 
 				/* translators: %s: Payment Gateway Title */
 
-				'desc'     => sprintf(esc_html__("Configure Additional VAT or TAX for Your Products That Your Castomers Will See in The Checkout Page and They Have to Pay The Extra if The Select %s", 'additional-fees-wc'), esc_html($gateway_title)),
+				'desc'     => sprintf(esc_html__("Configure Additional VAT or TAX for Your Products That Your Castomers Will See in The Checkout Page and They Have to Pay The Extra if The Select %s", 'additional-fees-for-woocommerce'), esc_html($gateway_title)),
 				'type'     => 'title'
 			],
 			'dynamic_vat_rate_'.$gateway_id => [
 				'id'       => 'additional_fees_for_wc_payment_gateway_'.$gateway_id.'_dynamic',
-				'name'    => esc_html__("Dynamic VAT", 'additional-fees-wc'),
-				'desc'     => esc_html__("Add a Number and The Percentage of Your Provided Number Will be Added to The Cart Total", 'additional-fees-wc'),
+				'name'    => esc_html__("Dynamic VAT", 'additional-fees-for-woocommerce'),
+				'desc'     => esc_html__("Add a Number and The Percentage of Your Provided Number Will be Added to The Cart Total", 'additional-fees-for-woocommerce'),
 				'type'     => 'text'
 			],
 			'flate_vat_rate'.$gateway_id => [
 				'id'       => 'additional_fees_for_wc_payment_gateway_'.$gateway_id.'_static',
-				'name'    => esc_html__("Flate VAT", 'additional-fees-wc'),
-				'desc'     => esc_html__("Add a Number That Will Be Added to Your Cart Total as Flate Rate", 'additional-fees-wc'),
+				'name'    => esc_html__("Flate VAT", 'additional-fees-for-woocommerce'),
+				'desc'     => esc_html__("Add a Number That Will Be Added to Your Cart Total as Flate Rate", 'additional-fees-for-woocommerce'),
 				'type'     => 'text'
 			],
 
@@ -99,7 +102,7 @@ class AdditionalFeesWcGateway{
 			]
 		];
 
-		return apply_filters("additional_fees_for_wc_vat_rate_" . $gateway_title . "_fields", $settings);
+		return apply_filters("additional_fees_for_woocommerce_tab_" . $gateway_title . "_fields", $settings);
 	}
 	
 }
