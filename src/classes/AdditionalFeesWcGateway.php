@@ -89,10 +89,10 @@ class AdditionalFeesWcGateway{
 				'desc'     => esc_html__("Add a Number and The Percentage of Your Provided Number Will be Added to The Cart Total", 'additional-fees-for-woocommerce'),
 				'type'     => 'text'
 			],
-			'flate_vat_rate'.$gateway_id => [
+			'flat_vat_rate'.$gateway_id => [
 				'id'       => 'additional_fees_for_wc_payment_gateway_'.$gateway_id.'_static',
-				'name'    => esc_html__("Flate VAT", 'additional-fees-for-woocommerce'),
-				'desc'     => esc_html__("Add a Number That Will Be Added to Your Cart Total as Flate Rate", 'additional-fees-for-woocommerce'),
+				'name'    => esc_html__("flat VAT", 'additional-fees-for-woocommerce'),
+				'desc'     => esc_html__("Add a Number That Will Be Added to Your Cart Total as flat Rate", 'additional-fees-for-woocommerce'),
 				'type'     => 'text'
 			],
 

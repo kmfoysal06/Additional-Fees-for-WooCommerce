@@ -35,19 +35,19 @@ class AdditionalFeesWc{
 	public function additional_fees_wc(){
 		global $woocommerce;
 
-		$flate_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_static')) ? get_option('additional_fees_for_wc_payment_gateway_static') : 0;
+		$flat_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_static')) ? get_option('additional_fees_for_wc_payment_gateway_static') : 0;
 
 		$dynamic_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_dynamic')) ? get_option('additional_fees_for_wc_payment_gateway_dynamic') : 0;
 
 		$get_dynamic_vat = $woocommerce->cart->cart_contents_total * ( $dynamic_vat / 100 );
 
-		$total_vat = $flate_vat + $get_dynamic_vat;
+		$total_vat = $flat_vat + $get_dynamic_vat;
 
 		if($total_vat > 0){
 			$fee_label = sprintf(
-		    /* translators: 1: Flate Fee, 2: Vat Percentage */
+		    /* translators: 1: flat Fee, 2: Vat Percentage */
 		    __("Flat Fee + Vat ( %1\$s + %2\$s%% )", 'additional-fees-for-woocommerce'),
-		    $flate_vat,
+		    $flat_vat,
 		    $dynamic_vat
 		);
 
@@ -84,20 +84,20 @@ class AdditionalFeesWc{
 	public function add_fee_for_payment_gateways($payment_method,$payment_method_title){
 			global $woocommerce;
 
-            $flate_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_static')) ? get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_static') : 0;
+            $flat_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_static')) ? get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_static') : 0;
             
             $dynamic_vat = !empty(get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_dynamic')) ? get_option('additional_fees_for_wc_payment_gateway_'.$payment_method.'_dynamic') : 0;
 
 
 			$get_dynamic_vat = $woocommerce->cart->cart_contents_total * ( $dynamic_vat / 100 );
 
-			$total_vat = $flate_vat + $get_dynamic_vat;
+			$total_vat = $flat_vat + $get_dynamic_vat;
 
             if($total_vat > 0){
             	$fee_label = sprintf(
-			    /* translators: 1: Flate Fee, 2: Vat Percentage, 3: Payment Gateway Title */
+			    /* translators: 1: flat Fee, 2: Vat Percentage, 3: Payment Gateway Title */
 			    __("Flat Fee + Vat ( %1\$s + %2\$s%% ) for %3\$s", 'additional-fees-for-woocommerce'),
-			    $flate_vat,
+			    $flat_vat,
 			    $dynamic_vat,
 			    $payment_method_title
 			);

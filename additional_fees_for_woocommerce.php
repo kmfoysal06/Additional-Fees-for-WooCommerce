@@ -4,8 +4,8 @@
  * 
  * Plugin Name: Additional Fees for WooCommerce
  * Author: kmfoysal06
- * Version: 1.1
- * Stable tag: 1.1
+ * Version: 1.2
+ * Stable tag: 1.2
  * text-domain: additional-fees-for-woocommerce
  * Description: Setting Up Additional Fee For WooCommerce
  * Author: kmfoysal06
